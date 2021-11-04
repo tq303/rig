@@ -1,0 +1,75 @@
+#!/bin/bash
+
+export EDITOR=nvim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# cheat.sh
+function cheatsh {
+    languages="git javascript lua nodejs rust tmux"
+    # choose language
+    #language=`printf $languages | tr " " "\n" | fzf`
+    language=`curl cht.sh/:list | fzf`
+
+    echo "cheat.sh\n"
+    echo "language: ${language}"
+
+    # input search query
+    echo -n "search: "
+    read search
+
+    # escape search for url
+    query=`printf ${search// /+}`
+
+    url="cht.sh/${language}/${query}"
+
+    echo $url
+    curl $url
+}
+
+alias gg="git add --all && git commit --amend --no-edit"
+alias gs="git status"
+alias gc="git commit"
+alias gl="git log"
+alias gcp="git cherry-pick"
+
+alias ls="lsd"
+
+alias csh="cheatsh"
+
+function yarn_test_fzf {
+    test_directories="$(fd --exclude .git -t d)"
+    test_files="$(fd --exclude .git -e test.ts -e test.tsx)"
+    selected_option=`echo "${test_files} ${test_directories}" | fzf -m`
+    return_code="${?}"
+
+    if [ ${return_code} -ne 0 ]; then
+        echo "You must select a match to run jest";
+        exit
+    fi
+
+    yarn test --no-coverage `echo ${selected_option}` ${@}
+    
+    print -s yarn test --no-coverage `echo ${selected_option}` ${@}
+}
+
+alias t="yarn_test_fzf"
+alias tw="yarn_test_fzf --watch"
+
+alias lg="lazygit"
+
+eval "$(starship init zsh)"
+
+# fzf
+# ctrl-r
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# ctrl-t
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
