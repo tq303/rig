@@ -1,8 +1,9 @@
 #!/bin/bash
 
-export EDITOR=nvim
+# Apple Silicon homebrew
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export EDITOR=nvim
 
 # cheat.sh
 function cheatsh {
@@ -35,6 +36,18 @@ alias gcp="git cherry-pick"
 
 alias ls="lsd"
 
+function lsg {
+  local ignore_args=()
+  if [[ -f .gitignore ]]; then
+    while IFS= read -r line; do
+      [[ -z "$line" || "$line" == \#* || "$line" == \!* ]] && continue
+      line="${line%/}"
+      ignore_args+=(--ignore-glob "$line")
+    done < .gitignore
+  fi
+  lsd --tree "${ignore_args[@]}" "$@"
+}
+
 alias csh="cheatsh"
 
 function yarn_test_fzf {
@@ -60,16 +73,16 @@ alias lg="lazygit"
 
 eval "$(starship init zsh)"
 
-# fzf
-# ctrl-r
+# fzf — prepend so it wins over /usr/bin/fzf
+export PATH="$HOME/.fzf/bin:$PATH"
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-
-# ctrl-t
 export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --bind 'ctrl-/:toggle-preview'
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
+source <(fzf --zsh)
+export PATH="$HOME/.local/bin:$PATH"
