@@ -2,7 +2,7 @@
 
 set -e
 
-bash symlink.sh
+bash "$(dirname "$0")/symlink.sh"
 
 # ghostty (skip if already installed — flatpak is the easiest fallback)
 if ! command -v ghostty &>/dev/null; then

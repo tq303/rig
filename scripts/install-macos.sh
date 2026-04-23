@@ -38,11 +38,4 @@ brew install mkcert
 # brew install imagemagick
 # brew install ffmpeg
 
-# hide dock auto appear
-defaults write com.apple.dock autohide-delay -float 0
-killall Dock
-# defaults delete com.apple.dock autohide-delay; killall Dock (undo)
-
-# create dock spacers
-# defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}' && killall Dock
-# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}' && killall Dock
+bash "$(dirname "$0")/macos-settings.sh"

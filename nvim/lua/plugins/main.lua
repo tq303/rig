@@ -35,7 +35,7 @@ return {
   },
   -- dashboard
   {
-    "echasnovski/mini.starter",
+    "nvim-mini/mini.starter",
     opts = function(_, opts)
       opts.evaluate_single = true
       opts.header = [[
@@ -101,28 +101,6 @@ return {
           prompt_position = "top",
         },
         sorting_strategy = "ascending",
-      },
-    },
-  },
-  -- AI
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    version = false,
-    build = "make",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "stevearc/dressing.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-      provider = "openai",
-      providers = {
-        openai = {
-          endpoint = vim.fn.getenv("AVANTE_OPENAI_API_URL"),
-          model = "gpt-4o-mini",
-          api_key = "AVANTE_OPENAI_API_KEY"
-        },
       },
     },
   },
