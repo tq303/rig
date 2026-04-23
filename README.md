@@ -2,25 +2,15 @@
 
 No place like home.
 
-## setup
+## getting started
 
 ```sh
-bash setup-ssh.sh
-```
-
-Generates an SSH key and prints the public key to add to GitHub (Settings > SSH and GPG keys) — add it as both an Authentication key and a Signing key.
-
-## env
-
-```sh
-AVANTE_OPENAI_API_KEY="key"
-AVANTE_OPENAI_API_URL="http://url
+bash setup-ssh.sh        # generate SSH key, add to GitHub
+bash install-macos.sh    # macOS
+bash install-ubuntu.sh   # Ubuntu
+nvm install --lts        # install a Node version
 ```
 
 ## nvim
 
 https://www.lazyvim.org
-
-## kitty
-
-`ctrl+shift+f5 (ctrl+cmd+, on macOS)` to reload

@@ -4,7 +4,7 @@ set -e
 
 DOTFILES="$( cd "$(dirname "$0")" && pwd )"
 
-mkdir -p ~/.config/ghostty ~/.config/nvim
+mkdir -p ~/.config/ghostty
 
 ln -sf "$DOTFILES/ghostty" ~/.config/ghostty/config
 ln -sf "$DOTFILES/nvim" ~/.config/nvim
