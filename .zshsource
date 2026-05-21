@@ -5,6 +5,10 @@
 
 export EDITOR=nvim
 
+# AI keys — set these in your shell or a secrets manager
+# export ANTHROPIC_API_KEY=""
+# export OPENAI_API_KEY=""
+
 # cheat.sh
 function cheatsh {
     languages="git javascript lua nodejs rust tmux"
@@ -86,3 +90,4 @@ export FZF_CTRL_R_OPTS="
   --header 'Press CTRL-Y to copy command into clipboard'"
 source <(fzf --zsh)
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
