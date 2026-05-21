@@ -62,6 +62,6 @@ fi
 
 # optional
 # brew install imagemagick
-# brew install ffmpeg
+brew install ffmpeg
 
 bash "$(dirname "$0")/macos-settings.sh"
