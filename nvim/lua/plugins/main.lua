@@ -7,6 +7,9 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "go",
+        "gomod",
+        "gowork",
         "html",
         "javascript",
         "json",
@@ -101,6 +104,31 @@ return {
           prompt_position = "top",
         },
         sorting_strategy = "ascending",
+      },
+    },
+  },
+  -- fix: gopls semantic tokens nil crash (LazyVim go.lua:64)
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        gopls = function(_, opts)
+          Snacks.util.lsp.on({ name = "gopls" }, function(_, client)
+            if not client.server_capabilities.semanticTokensProvider then
+              local semantic = client.config.capabilities.textDocument.semanticTokens
+              if semantic then
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  legend = {
+                    tokenTypes = semantic.tokenTypes,
+                    tokenModifiers = semantic.tokenModifiers,
+                  },
+                  range = true,
+                }
+              end
+            end
+          end)
+        end,
       },
     },
   },
