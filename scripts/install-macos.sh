@@ -21,6 +21,7 @@ brew update
 
 # terminal
 brew install --cask ghostty
+brew install --cask rectangle
 
 # editors
 brew install --cask visual-studio-code
