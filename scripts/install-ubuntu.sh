@@ -12,7 +12,7 @@ if ! command -v ghostty &>/dev/null; then
 fi
 
 # tools (apt)
-sudo apt install -y ripgrep fd-find fzf bat ffmpeg
+sudo apt install -y ripgrep fd-find fzf bat ffmpeg tmux
 
 # neovim (apt version is outdated)
 sudo snap install nvim --classic

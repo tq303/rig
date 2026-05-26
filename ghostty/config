@@ -8,33 +8,3 @@ theme = Tinacious Design Dark
 # macOS
 macos-titlebar-style = native
 macos-option-as-alt = true
-
-# window
-window-show-tab-bar = always
-window-new-tab-position = current
-
-# Splits inherit cwd (replaces kitty's --cwd=current)
-split-inherit-working-directory = true
-
-# Keybindings — tabs
-keybind = ctrl+shift+a=previous_tab
-keybind = ctrl+shift+s=next_tab
-keybind = ctrl+shift+[=move_tab:-1
-keybind = ctrl+shift+]=move_tab:1
-
-keybind = ctrl+shift+i=prompt_tab_title
-
-# Keybindings — new split
-keybind = ctrl+shift+enter=new_split:down
-keybind = ctrl+shift+space=new_split:right
-
-# Keybindings — focus split
-keybind = ctrl+shift+p=goto_split:next
-keybind = ctrl+shift+h=goto_split:left
-keybind = ctrl+shift+l=goto_split:right
-keybind = ctrl+shift+k=goto_split:up
-keybind = ctrl+shift+j=goto_split:down
-
-# Keybindings — resize split
-keybind = ctrl+shift+backspace=resize_split:left,100
-keybind = ctrl+shift+backslash=resize_split:right,100

@@ -30,7 +30,7 @@ brew install --cask claude
 bash "$(dirname "$0")/symlink.sh"
 
 # tools
-brew install neovim ripgrep fd fzf lsd bat lazygit starship gh uv
+brew install neovim ripgrep fd fzf lsd bat lazygit starship gh uv tmux
 
 # language
 # nodejs

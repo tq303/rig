@@ -3,6 +3,7 @@ rules:
     - files:
         - nvim
         - ghostty
+        - tmux
       link: true
       locations:
         - ~/.config
@@ -16,8 +17,3 @@ rules:
       link: true
       locations:
         - ~/
-    - repo: https://github.com/valyuAI/skills
-      files:
-        - valyu-search/valyu-best-practices
-      locations:
-        - ~/.claude/commands
