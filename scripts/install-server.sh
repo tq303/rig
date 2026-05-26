@@ -2,15 +2,12 @@
 
 set -e
 
-# ghostty (skip if already installed — flatpak is the easiest fallback)
-if ! command -v ghostty &>/dev/null; then
-  sudo apt install -y flatpak
-  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-  flatpak install -y flathub com.mitchellh.ghostty
-fi
-
 # tools (apt)
-sudo apt install -y ripgrep fd-find fzf bat ffmpeg tmux
+sudo apt update
+sudo apt install -y git ripgrep fd-find fzf bat ffmpeg tmux zsh
+
+# tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
 
 # neovim (apt version is outdated)
 sudo snap install nvim --classic
@@ -65,12 +62,6 @@ go install github.com/tq303/valet@latest
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.17
 
-# mkcert
-sudo apt install -y libnss3-tools
-MKCERT_VERSION=1.4.4
-curl -Lo ~/.local/bin/mkcert "https://github.com/FiloSottile/mkcert/releases/download/v${MKCERT_VERSION}/mkcert-v${MKCERT_VERSION}-linux-amd64"
-chmod +x ~/.local/bin/mkcert
-
 # ai
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
@@ -81,3 +72,21 @@ uv tool install basic-memory
 if ! claude mcp list 2>/dev/null | grep -q basic-memory; then
   claude mcp add --scope user basic-memory -- uvx basic-memory mcp
 fi
+
+# valet — symlink configs
+~/go/bin/valet
+
+# zsh — source .zshsource and set as default shell
+if ! grep -q "zshsource" ~/.zshrc 2>/dev/null; then
+  echo '[ -f ~/.zshsource ] && source ~/.zshsource' >> ~/.zshrc
+fi
+chsh -s "$(which zsh)"
+
+# persistent tmux session on boot
+mkdir -p ~/.config/systemd/user
+cp "$(dirname "$0")/../tmux/tmux-session.service" ~/.config/systemd/user/tmux-session.service
+systemctl --user enable tmux-session
+systemctl --user start tmux-session
+loginctl enable-linger "$USER"
+
+echo "Done — log out and back in for zsh to take effect"
