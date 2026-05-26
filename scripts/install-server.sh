@@ -74,7 +74,7 @@ if ! claude mcp list 2>/dev/null | grep -q basic-memory; then
 fi
 
 # valet — symlink configs
-~/go/bin/valet
+~/go/bin/val sync --platform server
 
 # zsh — source .zshsource and set as default shell
 if ! grep -q "zshsource" ~/.zshrc 2>/dev/null; then

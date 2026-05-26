@@ -44,6 +44,7 @@ fi
 brew install mkcert go
 
 go install github.com/tq303/valet@latest
+~/go/bin/val sync --platform mac
 
 # ai
 export NVM_DIR="$HOME/.nvm"
