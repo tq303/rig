@@ -5,15 +5,23 @@ No place like home.
 ## getting started
 
 ```sh
-bash setup-ssh.sh        # generate SSH key, add to GitHub
-bash install-macos.sh    # macOS
-bash install-ubuntu.sh   # Ubuntu
-nvm install --lts        # install a Node version
+git clone https://github.com/tq303/rig.git ~/code/rig
+cd ~/code/rig
+bash scripts/setup-ssh.sh        # generate SSH key, add to GitHub
+nvm install --lts                # install a Node version
 ```
+
+```sh
+bash scripts/install-macos.sh    # macOS
+bash scripts/install-ubuntu.sh   # Ubuntu desktop
+bash scripts/install-server.sh   # headless server (NUC etc.)
+```
+
+After server install: `tailscale up`
 
 ## tmux
 
-Prefix: `ctrl+space`
+Prefix: `ctrl+a`
 
 | Key | Action |
 |---|---|
