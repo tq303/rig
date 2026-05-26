@@ -2,9 +2,16 @@ version: 1
 rules:
     - files:
         - nvim
-        - ghostty
         - tmux
       link: true
+      locations:
+        - ~/.config
+    - files:
+        - ghostty
+      link: true
+      platforms:
+        - mac
+        - ubuntu
       locations:
         - ~/.config
     - files:
