@@ -23,4 +23,4 @@ bash "$(dirname "$0")/install-linux.sh"
 go install github.com/tq303/valet@latest
 ~/go/bin/val sync --platform ubuntu
 
-bash "$(dirname "$0")/install-ai.sh"
+bash "$(dirname "$0")/install-tooling.sh"

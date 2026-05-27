@@ -27,8 +27,6 @@ brew install --cask rectangle
 brew install --cask visual-studio-code
 brew install --cask claude
 
-bash "$(dirname "$0")/symlink.sh"
-
 # tools
 brew install neovim ripgrep fd fzf lsd bat lazygit starship gh uv tmux
 
@@ -45,7 +43,7 @@ brew install mkcert go
 go install github.com/tq303/valet@latest
 ~/go/bin/val sync --platform mac
 
-bash "$(dirname "$0")/install-ai.sh"
+bash "$(dirname "$0")/install-tooling.sh"
 
 # vscode extension (requires code CLI — available after brew cask install)
 if command -v code &>/dev/null; then
