@@ -24,6 +24,7 @@ vim.g.maplocalleader = "\\"
 -- buffers
 --
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>bD", ":bdelete!<CR>", { desc = "Force delete buffer" })
 vim.keymap.set("n", "<leader>bl", ":FzfLua buffers<CR>", { desc = "Buffers" })
 vim.keymap.set("n", "<leader>bn", ":enew<CR>", { desc = "New buffer" })
 vim.keymap.set("n", "<leader>bs", function()
@@ -82,6 +83,15 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.api.nvim_set_hl(0, "MsgArea", { fg = "#7aa2f7" })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { link = "@markup.heading.2.markdown" })
+		vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { link = "@markup.heading.2.markdown" })
+		vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { link = "@markup.heading.2.markdown" })
+		vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { link = "@markup.heading.2.markdown" })
+	end,
+})
 
 -- Setup lazy.nvim
 require("lazy").setup({
