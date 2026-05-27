@@ -47,6 +47,7 @@ vim.keymap.set("n", "<leader>m", ":Mason<CR>", { desc = "Mason" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save" })
 
 -- code
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<leader>cf", function()
 	require("conform").format({ async = true })
 end, { desc = "Format" })
