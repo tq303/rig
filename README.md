@@ -23,21 +23,17 @@ After server install: `tailscale up`
 
 Prefix: `ctrl+a`
 
-| Key | Action |
-|---|---|
-| `prefix + enter` | split down |
-| `prefix + space` | split right |
-| `prefix + h/j/k/l` | navigate panes |
-| `prefix + p` | display pane numbers |
-| `prefix + backspace` | resize pane left |
-| `prefix + \` | resize pane right |
-| `prefix + a/s` | previous/next window |
-| `prefix + [/]` | move window left/right |
-| `prefix + i` | rename window |
-| `prefix + z` | zoom/unzoom pane |
+| Key                  | Action                 |
+| -------------------- | ---------------------- |
+| `prefix + enter`     | split down             |
+| `prefix + space`     | split right            |
+| `prefix + h/j/k/l`   | navigate panes         |
+| `prefix + p`         | display pane numbers   |
+| `prefix + backspace` | resize pane left       |
+| `prefix + \`         | resize pane right      |
+| `prefix + a/s`       | previous/next window   |
+| `prefix + [/]`       | move window left/right |
+| `prefix + i`         | rename window          |
+| `prefix + z`         | zoom/unzoom pane       |
 
 Zoomed panes are indicated by `[]` in the status bar.
-
-## nvim
-
-https://www.lazyvim.org

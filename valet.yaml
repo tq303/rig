@@ -2,19 +2,9 @@ version: 1
 rules:
     - files:
         - tmux
-        - v2/nvim
-      locations:
-        - ~/.config
-      platforms:
-        - mac
-    - files:
         - nvim
-        - tmux
       locations:
         - ~/.config
-      platforms:
-        - ubuntu
-        - server
     - files:
         - ghostty
       platforms:
