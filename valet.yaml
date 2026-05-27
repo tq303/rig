@@ -3,12 +3,10 @@ rules:
     - files:
         - nvim
         - tmux
-      link: true
       locations:
         - ~/.config
     - files:
         - ghostty
-      link: true
       platforms:
         - mac
         - ubuntu
@@ -16,11 +14,9 @@ rules:
         - ~/.config
     - files:
         - claude/CLAUDE.md
-      link: true
       locations:
         - ~/.claude
     - files:
         - .zshsource
-      link: true
       locations:
         - ~/

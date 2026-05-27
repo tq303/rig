@@ -132,6 +132,25 @@ return {
       },
     },
   },
+  -- disable markdownlint warnings
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        markdown = {},
+      },
+    },
+  },
+  -- markdown formatter
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        markdown = { "oxfmt" },
+      },
+    },
+  },
   -- env
   {
     "tpope/vim-dotenv",

@@ -33,7 +33,6 @@ bash "$(dirname "$0")/symlink.sh"
 brew install neovim ripgrep fd fzf lsd bat lazygit starship gh uv tmux
 
 # language
-# nodejs
 if [ ! -d "$HOME/.nvm" ]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 fi
@@ -46,20 +45,11 @@ brew install mkcert go
 go install github.com/tq303/valet@latest
 ~/go/bin/val sync --platform mac
 
-# ai
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-npm install -g @anthropic-ai/claude-code opensrc
+bash "$(dirname "$0")/install-ai.sh"
 
 # vscode extension (requires code CLI — available after brew cask install)
 if command -v code &>/dev/null; then
   code --install-extension anthropic.claude-code
-fi
-
-# basic-memory mcp
-uv tool install basic-memory
-if ! claude mcp list 2>/dev/null | grep -q basic-memory; then
-  claude mcp add --scope user basic-memory -- uvx basic-memory mcp
 fi
 
 # optional
