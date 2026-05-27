@@ -25,6 +25,13 @@ vim.g.maplocalleader = "\\"
 --
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
 vim.keymap.set("n", "<leader>bl", ":FzfLua buffers<CR>", { desc = "Buffers" })
+vim.keymap.set("n", "<leader>bn", ":enew<CR>", { desc = "New buffer" })
+vim.keymap.set("n", "<leader>bs", function()
+	local name = vim.fn.input("Save as: ")
+	if name ~= "" then
+		vim.cmd("w " .. name)
+	end
+end, { desc = "Save buffer" })
 
 -- files
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
