@@ -6,6 +6,7 @@ vim.opt.softtabstop = 2 -- How many spaces <Tab>/<BS> use in Insert mode
 vim.opt.smartindent = true -- Auto-indent new lines intelligently
 vim.opt.autoindent = true -- Copy indent from current line when starting a new one
 vim.opt.autoread = true -- Reload files changed outside nvim
+vim.opt.updatetime = 300 -- Faster CursorHold → checktime
 vim.opt.clipboard = "unnamedplus" -- Sync yank with system clipboard
 vim.opt.number = true -- show absolute line numbers
 vim.opt.relativenumber = true -- show relative line numbers (optional, comment out if you don’t like it)

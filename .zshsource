@@ -75,6 +75,14 @@ alias tw="yarn_test_fzf --watch"
 
 alias lg="lazygit"
 
+function rig {
+  source ~/.zshsource && echo "ok  .zshsource" || echo "fail .zshsource"
+  if [[ -n "$TMUX" ]]; then
+    tmux source-file ~/.config/tmux/tmux.conf && echo "ok  tmux.conf" || echo "fail tmux.conf"
+    tmux move-window -r
+  fi
+}
+
 eval "$(starship init zsh)"
 
 # fzf — prepend so it wins over /usr/bin/fzf
