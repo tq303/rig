@@ -83,6 +83,10 @@ function rig {
   fi
 }
 
+if [[ -n "$SSH_TTY" && -z "$TMUX" ]]; then
+  tmux new-session -A -s main
+fi
+
 eval "$(starship init zsh)"
 
 # fzf — prepend so it wins over /usr/bin/fzf
