@@ -33,8 +33,8 @@ if ! command -v gh &>/dev/null; then
 fi
 
 # go
-if ! command -v go &>/dev/null; then
-  GO_VERSION=1.23.4
+GO_VERSION=1.26.3
+if ! command -v go &>/dev/null || [[ "$(go version 2>/dev/null | awk '{print $3}' | tr -d 'go')" < "$GO_VERSION" ]]; then
   curl -Lo /tmp/go.tar.gz "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
   sudo rm -rf /usr/local/go
   sudo tar -C /usr/local -xzf /tmp/go.tar.gz
@@ -50,4 +50,7 @@ fi
 
 # node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.17
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install --lts
+npm install -g yarn
