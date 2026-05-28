@@ -47,6 +47,16 @@ vim.keymap.set("n", "<leader>m", ":Mason<CR>", { desc = "Mason" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save" })
 
 -- code
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gs", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
+      vim.api.nvim_win_close(win, false)
+      return
+    end
+  end
+  vim.lsp.buf.hover()
+end, { desc = "Hover (type info)" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<leader>cf", function()
 	require("conform").format({ async = true })
@@ -173,8 +183,17 @@ require("lazy").setup({
 		},
 		{
 			"saghen/blink.cmp",
+			version = "1.*",
 			opts = {
-				keymap = { preset = "default" },
+				keymap = {
+					preset = "default",
+					["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+					["<CR>"] = { "accept", "fallback" },
+					["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+				},
+				completion = {
+					list = { selection = { preselect = true, auto_insert = false } },
+				},
 				sources = {
 					default = { "lsp", "path", "snippets", "buffer" },
 				},
