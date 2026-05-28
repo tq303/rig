@@ -4,7 +4,10 @@ font-size = 12
 font-thicken = true
 
 theme = Tinacious Design Dark
+term = xterm-256color
 
 # macOS
 macos-titlebar-style = native
 macos-option-as-alt = true
+
+keybind = ctrl+shift+comma=prompt_surface_title
