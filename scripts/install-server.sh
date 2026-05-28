@@ -9,6 +9,10 @@ sudo apt install -y git ripgrep fd-find fzf bat ffmpeg tmux zsh
 # tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
 
+# docker
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker "$USER"
+
 bash "$(dirname "$0")/install-linux.sh"
 
 go install github.com/tq303/valet@latest
