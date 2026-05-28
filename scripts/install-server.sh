@@ -15,7 +15,7 @@ sudo systemctl restart avahi-daemon
 
 # tools (apt)
 sudo apt update
-sudo apt install -y git ripgrep fd-find fzf bat ffmpeg tmux zsh xclip
+sudo apt install -y git ripgrep fd-find fzf bat ffmpeg tmux zsh xclip make
 
 # tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
