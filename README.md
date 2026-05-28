@@ -7,7 +7,7 @@ No place like home.
 ```sh
 git clone https://github.com/tq303/rig.git ~/code/rig
 cd ~/code/rig
-bash scripts/setup-ssh.sh        # generate SSH key, add to GitHub
+bash scripts/setup-ssh.sh        # generate SSH key, load into agent, add to GitHub
 nvm install --lts                # install a Node version
 ```
 

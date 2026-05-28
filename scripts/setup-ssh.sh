@@ -7,6 +7,9 @@ read -p "Email: " email
 
 ssh-keygen -t ed25519 -C "$email" -f "$HOME/.ssh/$username"
 
+eval "$(ssh-agent -s)"
+ssh-add "$HOME/.ssh/$username"
+
 echo ""
 echo "Add this public key to GitHub (Settings > SSH and GPG keys)"
 echo "Add it twice: once as Authentication key, once as Signing key"
