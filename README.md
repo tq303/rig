@@ -12,12 +12,15 @@ nvm install --lts                # install a Node version
 ```
 
 ```sh
-bash scripts/install-macos.sh    # macOS
-bash scripts/install-ubuntu.sh   # Ubuntu desktop
-bash scripts/install-server.sh   # headless server (NUC etc.)
+bash scripts/install-macos.sh             # macOS
+bash scripts/install-ubuntu.sh            # Ubuntu desktop
+bash scripts/install-server.sh <hostname> # headless server (e.g. nuc)
 ```
 
-After server install: `tailscale up`
+After server install:
+- `tailscale up`
+- Log out and back in for zsh to take effect
+- Machine will be reachable at `<hostname>.local` on the network
 
 ## tmux
 
@@ -33,7 +36,7 @@ Prefix: `ctrl+a`
 | `prefix + \`         | resize pane right      |
 | `prefix + a/s`       | previous/next window   |
 | `prefix + [/]`       | move window left/right |
-| `prefix + i`         | rename window          |
+| `prefix + ,`         | rename window          |
 | `prefix + z`         | zoom/unzoom pane       |
 
 Zoomed panes are indicated by `[]` in the status bar.

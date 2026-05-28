@@ -48,6 +48,15 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save" })
 
 -- code
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gw", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
+      vim.api.nvim_win_close(win, false)
+      return
+    end
+  end
+  vim.diagnostic.open_float()
+end, { desc = "Show line diagnostics" })
 vim.keymap.set("n", "gs", function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_config(win).relative ~= "" then
@@ -88,7 +97,21 @@ vim.opt.autoindent = true -- Copy indent from current line when starting a new o
 vim.opt.autoread = true -- Reload files changed outside nvim
 vim.opt.updatetime = 300 -- Faster CursorHold → checktime
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+	if os.getenv("SSH_TTY") then
+		vim.g.clipboard = {
+			name = "OSC 52",
+			copy = {
+				["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+				["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+			},
+			paste = {
+				["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+				["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+			},
+		}
+	else
+		vim.opt.clipboard = "unnamedplus"
+	end
 end)
 vim.opt.number = true
 vim.opt.relativenumber = true

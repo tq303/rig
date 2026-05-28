@@ -2,9 +2,20 @@
 
 set -e
 
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 <hostname>"
+  exit 1
+fi
+HOSTNAME=$1
+
+# hostname + mDNS (accessible as $HOSTNAME.local on the network)
+sudo hostnamectl set-hostname "$HOSTNAME"
+sudo apt install -y avahi-daemon
+sudo systemctl restart avahi-daemon
+
 # tools (apt)
 sudo apt update
-sudo apt install -y git ripgrep fd-find fzf bat ffmpeg tmux zsh
+sudo apt install -y git ripgrep fd-find fzf bat ffmpeg tmux zsh xclip
 
 # tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
