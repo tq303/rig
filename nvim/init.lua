@@ -117,6 +117,16 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.api.nvim_set_hl(0, "MsgArea", { fg = "#7aa2f7" })
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "MsgArea", { fg = "#c0caf5", bg = "#3b3f4c", bold = true })
+	end,
+})
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "MsgArea", { fg = "#7aa2f7" })
+	end,
+})
 
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = function()
@@ -266,7 +276,6 @@ require("lazy").setup({
 			end,
 		},
 		{ "MagicDuck/grug-far.nvim", opts = {} },
-		{ "mfussenegger/nvim-lint" },
 		{
 			"stevearc/conform.nvim",
 			opts = {
@@ -364,7 +373,6 @@ require("lazy").setup({
 				vim.cmd.colorscheme("tokyonight")
 			end,
 		},
-		{ "tpope/vim-dotenv" },
 		{
 			"folke/persistence.nvim",
 			event = "BufReadPre",
