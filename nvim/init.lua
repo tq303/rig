@@ -57,7 +57,7 @@ vim.keymap.set("n", "gw", function()
   end
   vim.diagnostic.open_float()
 end, { desc = "Show line diagnostics" })
-vim.keymap.set("n", "gs", function()
+vim.keymap.set("n", "gh", function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.api.nvim_win_get_config(win).relative ~= "" then
       vim.api.nvim_win_close(win, false)
@@ -359,6 +359,14 @@ require("lazy").setup({
 			end,
 		},
 		{ "tpope/vim-dotenv" },
+		{
+			"kylechui/nvim-surround",
+			event = "VeryLazy",
+			config = function()
+				require("nvim-surround").setup()
+				vim.keymap.set({ "n", "x" }, "gs", "<Plug>(nvim-surround-normal)")
+			end,
+		},
 	},
 	install = { colorscheme = { "tokyonight", "habamax" } },
 	checker = { enabled = true, notify = false },
