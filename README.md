@@ -17,10 +17,18 @@ bash scripts/install-ubuntu.sh            # Ubuntu desktop
 bash scripts/install-server.sh <hostname> # headless server (e.g. nuc)
 ```
 
+**Windows** — Git isn't available yet to clone the repo, so bootstrap it first:
+
+```cmd
+winget install --id Git.Git -e
+git clone https://github.com/tq303/rig.git %USERPROFILE%\rig
+cd %USERPROFILE%\rig
+scripts\install-win.bat
+```
+
 After server install:
 - `tailscale up`
-- Log out and back in for zsh to take effect
-- Machine will be reachable at `<hostname>.local` on the network
+- Add `<server-ip> <hostname>.local` to `/etc/hosts` on connecting machines to reach it by name
 
 ## tmux
 

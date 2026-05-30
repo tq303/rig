@@ -28,7 +28,7 @@ brew install --cask visual-studio-code
 brew install --cask claude
 
 # tools
-brew install neovim ripgrep fd fzf lsd bat lazygit starship gh uv tmux
+brew install neovim ripgrep fd fzf lsd bat lazygit starship gh uv tmux gifski
 
 # language
 if [ ! -d "$HOME/.nvm" ]; then

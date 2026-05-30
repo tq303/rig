@@ -3,8 +3,18 @@ rules:
     - files:
         - tmux
         - nvim
+      platforms:
+        - mac
+        - ubuntu
+        - server
       locations:
         - ~/.config
+    - files:
+        - nvim
+      platforms:
+        - windows
+      locations:
+        - $LOCALAPPDATA
     - files:
         - ghostty
       platforms:
