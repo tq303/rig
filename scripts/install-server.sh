@@ -34,6 +34,7 @@ bash "$(dirname "$0")/install-linux.sh"
 
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 go install github.com/tq303/valet@latest
+go install github.com/tq303/rip@latest
 
 bash "$(dirname "$0")/install-tooling.sh"
 

@@ -28,5 +28,9 @@ rules:
         - ~/.claude
     - files:
         - .zshsource
+      platforms:
+        - mac
+        - ubuntu
+        - server
       locations:
         - ~/

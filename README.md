@@ -26,6 +26,12 @@ cd %USERPROFILE%\rig
 scripts\install-win.bat
 ```
 
+After Windows install, run in PowerShell (admin) to debloat:
+
+```powershell
+irm christitus.com/win | iex
+```
+
 After server install:
 - `tailscale up`
 - Add `<server-ip> <hostname>.local` to `/etc/hosts` on connecting machines to reach it by name

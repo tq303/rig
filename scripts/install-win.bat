@@ -30,7 +30,8 @@ winget install --id Gyan.FFmpeg -e --source winget
 
 REM valet (requires go — open a new terminal first if go was just installed)
 go install github.com/tq303/valet@latest
-%USERPROFILE%\go\bin\val sync --platform windows
+go install github.com/tq303/rip@latest
+%USERPROFILE%\go\bin\valet sync --platform windows
 
 echo.
 echo Done. Restart your terminal for PATH changes to take effect.
