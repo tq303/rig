@@ -255,7 +255,7 @@ require("lazy").setup({
 			config = function()
 				require("mason").setup()
 				local registry = require("mason-registry")
-				for _, tool in ipairs({ "shfmt", "yamlfmt", "stylua" }) do
+				for _, tool in ipairs({ "shfmt", "yamlfmt", "stylua", "clang-format" }) do
 					if not registry.is_installed(tool) then
 						registry.get_package(tool):install()
 					end
@@ -383,6 +383,7 @@ require("lazy").setup({
 			priority = 1000,
 			config = function()
 				vim.cmd.colorscheme("tokyonight")
+				vim.api.nvim_set_hl(0, "Visual", { bg = "#164a5c", fg = "#7dcfff" })
 			end,
 		},
 		{
