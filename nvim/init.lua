@@ -268,7 +268,7 @@ require("lazy").setup({
 			config = function()
 				local capabilities = require("blink.cmp").get_lsp_capabilities()
 				require("mason-lspconfig").setup({
-					ensure_installed = { "gopls", "ts_ls", "lua_ls" },
+					ensure_installed = { "gopls", "ts_ls", "lua_ls", "clangd" },
 					handlers = {
 						function(server)
 							require("lspconfig")[server].setup({ capabilities = capabilities })
@@ -303,6 +303,8 @@ require("lazy").setup({
 					bash = { "shfmt" },
 					yaml = { "yamlfmt" },
 					lua = { "stylua" },
+					c = { "clang-format" },
+					cpp = { "clang-format" },
 				},
 				format_on_save = { timeout_ms = 500 },
 			},
