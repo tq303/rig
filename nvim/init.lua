@@ -21,6 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Prevent <Space> from acting as a motion in visual mode so leader sequences work
+vim.keymap.set("x", "<Space>", "<Nop>")
+
 -- buffers
 --
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
@@ -38,8 +41,17 @@ end, { desc = "Save buffer" })
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 vim.keymap.set("n", "<leader>ff", ":FzfLua files<CR>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>fs", ":FzfLua live_grep<CR>", { desc = "Search (ripgrep)" })
+vim.keymap.set("x", "<leader>fs", function()
+  local from = vim.fn.getpos("'<")
+  local to = vim.fn.getpos("'>")
+  local lines = vim.api.nvim_buf_get_text(0, from[2] - 1, from[3] - 1, to[2] - 1, to[3], {})
+  require("fzf-lua").live_grep({ search = table.concat(lines, "\n") })
+end, { desc = "Search selection (ripgrep)" })
 vim.keymap.set("n", "<leader>fr", ":FzfLua oldfiles<CR>", { desc = "Recent files" })
 vim.keymap.set("n", "<leader>fg", ":GrugFar<CR>", { desc = "Find and replace" })
+vim.keymap.set("x", "<leader>fg", function()
+  require("grug-far").with_visual_selection()
+end, { desc = "Find and replace selection" })
 
 -- misc
 vim.keymap.set("n", "<leader>l", ":Lazy<CR>", { desc = "Lazy" })
@@ -160,7 +172,7 @@ require("lazy").setup({
 				preset = "helix",
 				spec = {
 					{ "<leader>b", group = "buffer" },
-					{ "<leader>f", group = "file" },
+					{ "<leader>f", group = "file", mode = { "n", "x" } },
 					{ "<leader>w", group = "window" },
 					{ "<leader>q", group = "quit/session" },
 					{ "<leader>c", group = "code" },
