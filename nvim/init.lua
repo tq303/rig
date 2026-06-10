@@ -243,7 +243,7 @@ require("lazy").setup({
 					["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 				},
 				completion = {
-					list = { selection = { preselect = true, auto_insert = false } },
+					list = { selection = { preselect = true, auto_insert = true } },
 				},
 				sources = {
 					default = { "lsp", "path", "snippets", "buffer" },
