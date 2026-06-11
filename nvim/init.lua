@@ -239,11 +239,16 @@ require("lazy").setup({
 				keymap = {
 					preset = "default",
 					["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-					["<CR>"] = { "accept", "fallback" },
+					["<CR>"] = function(cmp)
+						if cmp.is_visible() then
+							cmp.accept()
+							return true
+						end
+					end,
 					["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 				},
 				completion = {
-					list = { selection = { preselect = true, auto_insert = true } },
+					list = { selection = { preselect = true, auto_insert = false } },
 				},
 				sources = {
 					default = { "lsp", "path", "snippets", "buffer" },
